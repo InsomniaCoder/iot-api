@@ -24,9 +24,7 @@ type DatabaseConfig struct {
 	Name     string
 }
 
-var (
-	Config AppConfig
-)
+var Config AppConfig
 
 func init() {
 	fmt.Printf("initializaing config")
