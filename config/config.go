@@ -25,11 +25,11 @@ type DatabaseConfig struct {
 }
 
 var (
-	config AppConfig
+	Config AppConfig
 )
 
 func init() {
-	LoadConfiguration(&config)
+	LoadConfiguration(&Config)
 }
 
 func LoadConfiguration(appConfig *AppConfig) {
@@ -49,6 +49,4 @@ func LoadConfiguration(appConfig *AppConfig) {
 		fmt.Printf("Unable to decode into struct, %v", marshalErr)
 		panic(marshalErr)
 	}
-
-	fmt.Printf("%+v", appConfig)
 }
