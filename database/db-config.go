@@ -1,7 +1,9 @@
-package config
+package database
 
 import (
 	"fmt"
+
+	"github.com/insomniacoder/iot-api/config"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -13,9 +15,10 @@ func init() {
 
 	fmt.Println("Initializing datbase connection")
 
-	con := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", Config.Database.User,
-		Config.Database.Password, Config.Database.Host, Config.Database.Port,
-		Config.Database.Name)
+	dbConfig := config.Config.Database
+
+	con := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", dbConfig.User, dbConfig.Password,
+		dbConfig.Host, dbConfig.Port, dbConfig.Name)
 
 	fmt.Printf("Connection String is: %v", con)
 
@@ -24,5 +27,6 @@ func init() {
 		fmt.Printf("Unable to connect to database, %v", err)
 		panic(err)
 	}
+
 	DBConnection = database
 }
