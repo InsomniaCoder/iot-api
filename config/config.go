@@ -29,6 +29,7 @@ var (
 )
 
 func init() {
+	fmt.Printf("initializaing config")
 	LoadConfiguration(&Config)
 }
 
