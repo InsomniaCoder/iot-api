@@ -6,14 +6,14 @@ services:
     image: iot-api:latest
     ports:
       - 8080:8080
-    depends_on:
-      mysql
+    depends_on: 
+      - mysql
     volumes:
       - ./config.yaml:/app/config.yaml
 
   mysql:
     image: mysql:5.7 
-    container_name: iot-data
+    container_name: iot-db
     command: mysqld --user=root
     volumes:
       - ./iot.sql:/docker-entrypoint-initdb.d/init.sql
