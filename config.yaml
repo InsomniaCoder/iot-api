@@ -1,0 +1,9 @@
+DEBUG: true
+server:
+  port: 8080
+database:
+  host: "mysql"
+  port: 3306
+  user: "user"
+  password: "password"
+  name: "iot-db"
