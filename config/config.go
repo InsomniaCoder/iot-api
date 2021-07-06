@@ -1,15 +1,14 @@
 package config
 
 import (
-	"fmt"
-
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
 type AppConfig struct {
 	Server   ServerConfig
 	Database DatabaseConfig
-	Debug    string
+	Debug    bool
 }
 
 type ServerConfig struct {
@@ -27,7 +26,7 @@ type DatabaseConfig struct {
 var Config AppConfig
 
 func init() {
-	fmt.Printf("initializaing config")
+	log.Println("initializaing config")
 	LoadConfiguration(&Config)
 }
 
@@ -38,14 +37,14 @@ func LoadConfiguration(appConfig *AppConfig) {
 	// Read Environment Variables
 	viper.AutomaticEnv()
 	if err != nil {
-		fmt.Printf("Cannot read configuration , %v", err)
+		log.Fatalf("Cannot read configuration, %v \n", err)
 		panic(err)
 	}
 
 	marshalErr := viper.Unmarshal(appConfig)
 
 	if marshalErr != nil {
-		fmt.Printf("Unable to decode into struct, %v", marshalErr)
+		log.Fatalf("Unable to decode into struct, %v \n", marshalErr)
 		panic(marshalErr)
 	}
 }
