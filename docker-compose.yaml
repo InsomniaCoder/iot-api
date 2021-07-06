@@ -1,0 +1,30 @@
+version: "3"
+services:
+  api:
+    build: .
+    container_name: iot-api
+    image: iot-api:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      mysql
+    volumes:
+      - ./config.yaml:/app/config.yaml
+
+  mysql:
+    image: mysql:5.7 
+    container_name: iot-data
+    command: mysqld --user=root
+    volumes:
+      - ./iot.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=iot-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=root
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
