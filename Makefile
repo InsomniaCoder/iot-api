@@ -5,6 +5,9 @@ test:
 local:
 	go run app/main.go
 
+lint:
+	go fmt ./...
+
 iot-api:
 	go build -o ${BINARY} app/*.go
 

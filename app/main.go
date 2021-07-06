@@ -21,5 +21,4 @@ func main() {
 	r := route.SetupRouter()
 	portNumber := fmt.Sprintf(":%d", config.Config.Server.Port)
 	r.Run(portNumber)
-
 }
