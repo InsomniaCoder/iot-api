@@ -22,7 +22,10 @@ func (s *sensorRepository) FetchAll() (sensorSlice []domain.Sensor, err error) {
 }
 
 func (s *sensorRepository) Store(sensorData *domain.Sensor) (err error) {
+	log.Printf("sensor repository saving %+v/n", sensorData)
+
 	result := s.con.Create(sensorData)
+
 	if result.Error != nil || result.RowsAffected != 1 {
 		return result.Error
 	} else {

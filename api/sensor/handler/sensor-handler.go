@@ -30,6 +30,8 @@ func (s *SensorHandler) CreateSensor(c *gin.Context) {
 
 	log.Printf("%+v\n", sensorData)
 
-	s.SensorUsecase.Store(&sensorData)
+	if err := s.SensorUsecase.Store(&sensorData); err != nil {
+		log.Panicf("store sensor data fail: %+v\n", err)
+	}
 
 }

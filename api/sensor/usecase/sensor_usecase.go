@@ -21,7 +21,7 @@ func (s *sensorUsecase) FetchAll() (sensorSlice []domain.Sensor, err error) {
 
 func (s *sensorUsecase) Store(sensorData *domain.Sensor) (err error) {
 
-	log.Panicln("handling sensor storing usecase")
+	log.Println("sensor storing usecase...")
 
 	if err := s.sensorRepository.Store(sensorData); err != nil {
 		return err
