@@ -41,3 +41,10 @@ request body:
 ```
 curl --header "Content-Type: application/json" --request POST --data '{"soil_moisture":10.2}' http://localhost:8082/api/v1/sensors
 ```
+
+#### GET /api/v1/sensors
+##### using curl to try
+
+```
+curl --header "Content-Type: application/json" --request GET http://localhost:8082/api/v1/sensors
+```

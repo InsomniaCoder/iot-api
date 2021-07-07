@@ -20,6 +20,7 @@ func NewSensorHandler(c *gin.Engine, sensorUsecase domain.SensorUsecase) {
 	api := c.Group("api/v1")
 	{
 		api.POST("sensors", handler.CreateSensor)
+		api.GET("sensors", handler.GetAllSensorData)
 	}
 }
 
@@ -30,8 +31,26 @@ func (s *SensorHandler) CreateSensor(c *gin.Context) {
 
 	log.Printf("%+v\n", sensorData)
 
-	if err := s.SensorUsecase.Store(&sensorData); err != nil {
+	savedSensor, err := s.SensorUsecase.Store(&sensorData)
+
+	if err != nil {
 		log.Panicf("store sensor data fail: %+v\n", err)
+	} else {
+		c.JSON(200, savedSensor)
+	}
+
+}
+
+func (s *SensorHandler) GetAllSensorData(c *gin.Context) {
+
+	log.Println("Get All Sensor Data")
+
+	sensorSlices, err := s.SensorUsecase.FetchAll()
+
+	if err != nil {
+		log.Panicf("getting all sensor data fail: %+v\n", err)
+	} else {
+		c.JSON(200, sensorSlices)
 	}
 
 }

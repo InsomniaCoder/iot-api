@@ -15,11 +15,11 @@ func (Sensor) TableName() string {
 }
 
 type SensorUsecase interface {
-	FetchAll() ([]Sensor, error)
-	Store(*Sensor) error
+	FetchAll() (*[]Sensor, error)
+	Store(*Sensor) (*Sensor, error)
 }
 
 type SensorRepository interface {
-	FetchAll() ([]Sensor, error)
-	Store(*Sensor) error
+	FetchAll() (*[]Sensor, error)
+	Store(*Sensor) (*Sensor, error)
 }

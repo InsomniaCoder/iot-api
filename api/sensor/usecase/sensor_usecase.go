@@ -15,16 +15,25 @@ func NewSensorUsecase(sensorRepo domain.SensorRepository) domain.SensorUsecase {
 	}
 }
 
-func (s *sensorUsecase) FetchAll() (sensorSlice []domain.Sensor, err error) {
-	return
+func (s *sensorUsecase) FetchAll() (sensorSlice *[]domain.Sensor, err error) {
+	log.Println("fetching all sensor usecase...")
+
+	sensorSlice, err = s.sensorRepository.FetchAll()
+
+	if err != nil {
+		return nil, err
+	}
+	return sensorSlice, nil
 }
 
-func (s *sensorUsecase) Store(sensorData *domain.Sensor) (err error) {
+func (s *sensorUsecase) Store(sensorData *domain.Sensor) (savedSensor *domain.Sensor, err error) {
 
 	log.Println("sensor storing usecase...")
 
-	if err := s.sensorRepository.Store(sensorData); err != nil {
-		return err
+	savedSensor, err = s.sensorRepository.Store(sensorData)
+
+	if err != nil {
+		return nil, err
 	}
-	return nil
+	return savedSensor, nil
 }

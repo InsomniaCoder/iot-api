@@ -18,7 +18,7 @@ func init() {
 
 	dbConfig := config.Config.Database
 
-	con := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", dbConfig.User, dbConfig.Password,
+	con := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", dbConfig.User, dbConfig.Password,
 		dbConfig.Host, dbConfig.Port, dbConfig.Name)
 
 	log.Printf("Connection String is: %v \n", con)
