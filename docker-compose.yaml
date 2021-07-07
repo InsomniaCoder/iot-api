@@ -12,9 +12,10 @@ services:
       - ./config.yaml:/app/config.yaml
 
   mysql:
+    platform: linux/x86_64
     image: mysql:5.7 
     container_name: iot-db
-    command: mysqld --user=root
+    command: mysqld --user=root --skip-grant-tables 
     volumes:
       - ./iot.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
