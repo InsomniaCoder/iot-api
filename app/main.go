@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/insomniacoder/iot-api/config"
 	log "github.com/sirupsen/logrus"
+
+	_ "github.com/insomniacoder/iot-api/api"
 )
 
 func init() {
@@ -11,4 +13,8 @@ func init() {
 	if config.Config.Debug {
 		log.Println("Running in DEBUG mode")
 	}
+}
+
+func main() {
+
 }
