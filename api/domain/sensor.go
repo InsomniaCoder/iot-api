@@ -5,9 +5,13 @@ import (
 )
 
 type Sensor struct {
-	ID           int64     `json:"id,omitempty"`
+	ID           uint      `gorm:"primaryKey" json:"id,omitempty"`
 	SoilMoisture float64   `json:"soil_moisture" binding:"required"`
-	CreatedAt    time.Time `json:"created_at,omitempty"`
+	CreatedAt    time.Time `gorm:"autoCreateTime" json:"created_at"`
+}
+
+func (Sensor) TableName() string {
+	return "sensors"
 }
 
 type SensorUsecase interface {
