@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/insomniacoder/iot-api/config"
+	"github.com/insomniacoder/iot-api/database"
 
 	_sensorHandler "github.com/insomniacoder/iot-api/api/sensor/handler"
 	_sensorRepository "github.com/insomniacoder/iot-api/api/sensor/repository"
@@ -21,7 +22,7 @@ func init() {
 	r.Use(Cors())
 
 	//set up dependency
-	sensorRepo := _sensorRepository.NewSensorRepository()
+	sensorRepo := _sensorRepository.NewSensorRepository(database.DBConnection)
 	sensorUsecase := _sensorUsecase.NewSensorUsecase(sensorRepo)
 	_sensorHandler.NewSensorHandler(r, sensorUsecase)
 

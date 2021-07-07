@@ -29,4 +29,7 @@ func (s *SensorHandler) CreateSensor(c *gin.Context) {
 	c.Bind(&sensorData)
 
 	log.Printf("%+v\n", sensorData)
+
+	s.SensorUsecase.Store(&sensorData)
+
 }
