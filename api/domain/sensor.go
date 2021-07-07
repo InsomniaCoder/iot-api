@@ -6,7 +6,7 @@ import (
 
 type Sensor struct {
 	ID           int64     `json:"id"`
-	SoilMoisture float64   `json:"soil_moisture" validate:"required"`
+	SoilMoisture float64   `json:"soil_moisture" binding:"required"`
 	CreatedAt    time.Time `json:"created_at"`
 }
 

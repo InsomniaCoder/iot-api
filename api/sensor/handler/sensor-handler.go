@@ -3,6 +3,8 @@ package handler
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/insomniacoder/iot-api/api/domain"
+
+	log "github.com/sirupsen/logrus"
 )
 
 type SensorHandler struct {
@@ -22,4 +24,9 @@ func NewSensorHandler(c *gin.Engine, sensorUsecase domain.SensorUsecase) {
 }
 
 func (s *SensorHandler) CreateSensor(c *gin.Context) {
+	var sensorData domain.Sensor
+
+	c.Bind(&sensorData)
+
+	log.Printf("%+v\n", sensorData)
 }
