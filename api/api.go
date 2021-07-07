@@ -19,10 +19,13 @@ func init() {
 	//set up router
 	r := gin.Default()
 	r.Use(Cors())
+
 	//set up dependency
 	sensorRepo := _sensorRepository.NewSensorRepository()
 	sensorUsecase := _sensorUsecase.NewSensorUsecase(sensorRepo)
 	_sensorHandler.NewSensorHandler(r, sensorUsecase)
+
+	//start server
 	portNumber := fmt.Sprintf(":%d", config.Config.Server.Port)
 	r.Run(portNumber)
 }
