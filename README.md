@@ -39,8 +39,5 @@ request body:
 ##### using curl to try
 
 ```
-curl --header "Content-Type: application/json" \ 
---request POST \
---data '{"soil_moisture":10.2}' \
-http://localhost:8082/api/v1/sensors
+curl --header "Content-Type: application/json" --request POST --data '{"soil_moisture":10.2}' http://localhost:8082/api/v1/sensors
 ```

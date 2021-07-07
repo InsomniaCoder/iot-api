@@ -5,9 +5,9 @@ import (
 )
 
 type Sensor struct {
-	ID           int64     `json:"id"`
+	ID           int64     `json:"id,omitempty"`
 	SoilMoisture float64   `json:"soil_moisture" binding:"required"`
-	CreatedAt    time.Time `json:"created_at"`
+	CreatedAt    time.Time `json:"created_at,omitempty"`
 }
 
 type SensorUsecase interface {
