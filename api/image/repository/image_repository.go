@@ -11,7 +11,7 @@ import (
 type imageRepository struct {
 }
 
-func NewSensorRepository() domain.ImageRepository {
+func NewImageRepository() domain.ImageRepository {
 	return &imageRepository{}
 }
 

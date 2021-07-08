@@ -44,7 +44,30 @@ curl --header "Content-Type: application/json" --request POST --data '{"soil_moi
 
 #### GET /api/v1/sensors
 ##### using curl to try
-
 ```
 curl --header "Content-Type: application/json" --request GET http://localhost:8082/api/v1/sensors
+```
+
+
+#### POST /api/v1/images/search
+
+request body:
+
+```
+{
+ "startTime"   : "2021-07-07T00:00:00Z",
+ "endTime"     : "2021-07-08T00:00:00Z"
+}
+```
+
+##### using curl to try
+```
+curl --header "Content-Type: application/json" --request POST --data '{"startTime":"2021-07-07T00:00:00Z","endTime":"2021-07-08T00:00:00Z"}'  http://localhost:8082/api/v1/images/search
+```
+
+#### POST /api/v1/images/capture
+
+##### using curl to try
+```
+curl --header "Content-Type: application/json" --request POST http://localhost:8082/api/v1/images/capture
 ```

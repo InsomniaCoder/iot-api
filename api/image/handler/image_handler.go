@@ -38,7 +38,7 @@ func (i *ImageHandler) SearchImageByTime(c *gin.Context) {
 
 	c.Bind(&searchRequest)
 
-	log.Printf("getting search request %+v\n", searchRequest)
+	log.Printf("search request %v\n", searchRequest)
 
 	imageLinkSlice, err := i.imageUsecase.SearchImageByTimeRange(searchRequest.startTime, searchRequest.endTime)
 
