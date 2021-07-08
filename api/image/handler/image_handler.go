@@ -26,8 +26,8 @@ func NewImageHandler(c *gin.Engine, iU domain.ImageUsecase) {
 }
 
 type ImageSearchRequest struct {
-	startTime time.Time
-	endTime   time.Time
+	StartTime time.Time
+	EndTime   time.Time
 }
 
 func (i *ImageHandler) SearchImageByTime(c *gin.Context) {
@@ -40,7 +40,7 @@ func (i *ImageHandler) SearchImageByTime(c *gin.Context) {
 
 	log.Printf("search request %v\n", searchRequest)
 
-	imageLinkSlice, err := i.imageUsecase.SearchImageByTimeRange(searchRequest.startTime, searchRequest.endTime)
+	imageLinkSlice, err := i.imageUsecase.SearchImageByTimeRange(searchRequest.StartTime, searchRequest.EndTime)
 
 	if err != nil {
 		log.Panicf("search image fail: %+v\n", err)
