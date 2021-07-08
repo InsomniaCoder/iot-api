@@ -14,11 +14,11 @@ type ImageLink struct {
 }
 
 type ImageUsecase interface {
-	SearchImageByTimeRange(startTime time.Time, endTime time.Time) ([]ImageLink, error)
+	SearchImageByTimeRange(startTime time.Time, endTime time.Time) (*[]ImageLink, error)
 	SendCaptureCommand() error
 }
 
 type ImageRepository interface {
-	FetchImage(startTime time.Time, endTime time.Time) ([]ImageLink, error)
+	FetchImage(startTime time.Time, endTime time.Time) (*[]ImageLink, error)
 	SendCaptureCommand() error
 }
