@@ -2,9 +2,9 @@
 
 This project is developped using Golang.
 
-It basically is a CRUD API for iot devices.
+It basically is a CRUD API for iot devices providing persistence to the database, and publish/subscibe with Kafka.
 
-Another purpose of this project is to act as an initilized project structure for future Go API development.
+Another purpose of this project is to act as an initilized project structure for future Go App development.
 
 I will try to incorporate technologies, concepts, good practices in including
 
@@ -13,6 +13,7 @@ I will try to incorporate technologies, concepts, good practices in including
 - Hexagonal architecture / Interface driven inspired by https://github.com/bxcodec/go-clean-arch
 - [Todo] Unit testing and integration testing
 - ORM using Gorm
+- Connection with Kafka via segmentio/kafka-go
 - Dockerfile / Docker-compose inspired by https://github.com/bxcodec/go-clean-arch and KubeBuilder
 
 
