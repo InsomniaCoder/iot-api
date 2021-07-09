@@ -9,6 +9,7 @@ type AppConfig struct {
 	Server   ServerConfig
 	Database DatabaseConfig
 	Debug    bool
+	Kafka    KafkaConfig
 }
 
 type ServerConfig struct {
@@ -21,6 +22,16 @@ type DatabaseConfig struct {
 	User     string
 	Password string
 	Name     string
+}
+
+type KafkaConfig struct {
+	Host     string
+	Port     int
+	Producer KafkaProducerConfig
+}
+
+type KafkaProducerConfig struct {
+	Topic string
 }
 
 var Config AppConfig
@@ -47,4 +58,6 @@ func LoadConfiguration(appConfig *AppConfig) {
 		log.Fatalf("Unable to decode into struct, %v \n", marshalErr)
 		panic(marshalErr)
 	}
+
+	log.Printf("loaded configuration %+v", appConfig)
 }

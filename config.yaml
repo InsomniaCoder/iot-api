@@ -7,3 +7,8 @@ database:
   user: "user"
   password: "password"
   name: "iot-db"
+kafka:
+  host: 127.0.0.1
+  port: 9092
+  producer:
+    topic: image-command
