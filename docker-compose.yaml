@@ -29,3 +29,36 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 5s
       retries: 10
+  # #db admin
+  # adminer:
+  #   image: adminer
+  #   environment:
+  #     ADMINER_DEFAULT_DB_DRIVER: mysql
+  #     ADMINER_DEFAULT_DB_HOST: iot-db
+  #     ADMINER_DEFAULT_DB_NAME: iot-db
+  #     ADMINER_DESIGN: nette
+  #   depends_on: 
+  #     - mysql
+  #   ports:
+  #     - 8085:8080
+  # Kafka
+  zookeeper:
+    platform: linux/x86_64
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    platform: linux/x86_64
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    depends_on: 
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      #create topics during creation: Topic:partition:replicas[:compact(optional)]
+      KAFKA_CREATE_TOPICS: "image-command:1:1"
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
