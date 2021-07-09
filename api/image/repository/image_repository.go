@@ -1,18 +1,23 @@
 package repository
 
 import (
+	"context"
 	"time"
 
 	log "github.com/sirupsen/logrus"
 
 	"github.com/insomniacoder/iot-api/api/domain"
+	"github.com/insomniacoder/iot-api/config"
+	"github.com/insomniacoder/iot-api/kafka/producer"
 )
 
 type imageRepository struct {
+	commandTopic string
 }
 
 func NewImageRepository() domain.ImageRepository {
-	return &imageRepository{}
+	topic := config.Config.Kafka.Producer.Topic
+	return &imageRepository{topic}
 }
 
 type ImageRepository interface {
@@ -27,5 +32,7 @@ func (i *imageRepository) FetchImage(startTime time.Time, endTime time.Time) (*[
 
 func (i *imageRepository) SendCaptureCommand() error {
 	log.Println("image repository send capture command")
-	return nil
+	ctx := context.Background()
+	//block send
+	return producer.Produce(ctx, i.commandTopic, "capture")
 }

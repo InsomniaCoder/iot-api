@@ -24,5 +24,5 @@ func (i *imageUsecase) SearchImageByTimeRange(startTime time.Time, endTime time.
 
 func (i *imageUsecase) SendCaptureCommand() error {
 	log.Println("imageUsecase SendCaptureCommand")
-	return nil
+	return i.imageRepository.SendCaptureCommand()
 }

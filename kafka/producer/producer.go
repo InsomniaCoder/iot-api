@@ -9,7 +9,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func produce(ctx context.Context, topic string, message string) error {
+func Produce(ctx context.Context, topic string, message string) error {
 
 	kafKaConfig := config.Config.Kafka
 	connectionString := fmt.Sprintf("%s:%d", kafKaConfig.Host, kafKaConfig.Port)
@@ -17,16 +17,12 @@ func produce(ctx context.Context, topic string, message string) error {
 	log.Printf("publishing message %s to %s", message, connectionString)
 
 	w := kafka.NewWriter(kafka.WriterConfig{
-		Brokers: []string{},
+		Brokers: []string{connectionString},
 		Topic:   topic,
 	})
 
-	err := w.WriteMessages(ctx, kafka.Message{
+	return w.WriteMessages(ctx, kafka.Message{
 		Key:   []byte("key"),
 		Value: []byte(message),
 	})
-	if err != nil {
-		return err
-	}
-	return nil
 }
