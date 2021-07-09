@@ -29,18 +29,18 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 5s
       retries: 10
-  # #db admin
-  # adminer:
-  #   image: adminer
-  #   environment:
-  #     ADMINER_DEFAULT_DB_DRIVER: mysql
-  #     ADMINER_DEFAULT_DB_HOST: iot-db
-  #     ADMINER_DEFAULT_DB_NAME: iot-db
-  #     ADMINER_DESIGN: nette
-  #   depends_on: 
-  #     - mysql
-  #   ports:
-  #     - 8085:8080
+  #db admin
+  adminer:
+    image: adminer
+    environment:
+      ADMINER_DEFAULT_DB_DRIVER: mysql
+      ADMINER_DEFAULT_DB_HOST: iot-db
+      ADMINER_DEFAULT_DB_NAME: iot-db
+      ADMINER_DESIGN: nette
+    depends_on: 
+      - mysql
+    ports:
+      - 8085:8080
   # Kafka
   zookeeper:
     platform: linux/x86_64
